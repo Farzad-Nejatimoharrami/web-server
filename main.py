@@ -3,7 +3,7 @@ from flask import Flask, render_template, Response
 import cv2
 
 
-cap=cv2.VideoCapture(1)
+cap=cv2.VideoCapture(0)
 app = Flask(__name__)
 
 @app.route('/')
@@ -16,10 +16,6 @@ def gen():
         ret, jpeg = cv2.imencode('.jpg', image) 
         frame=jpeg.tobytes()
         
-        
-        
-        
-        #frame = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
