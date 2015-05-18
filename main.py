@@ -1,14 +1,11 @@
+from app import app
 from flask import Flask, render_template, Response
 #from camera import VideoCamera
 import cv2
 
 
-cap=cv2.VideoCapture(0)
-app = Flask(__name__)
+cap=cv2.VideoCapture(1)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 def gen():
     while True:
