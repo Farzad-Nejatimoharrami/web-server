@@ -1,0 +1,22 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <h1>Remote Control</h1>
+    <form action="" method="post" name="remotecontrol">
+        {{ form.hidden_tag() }}
+        <p>
+            Expeiment Name:
+            {{ form.experiment(size=40) }}
+            {% for error in form.experiment.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}<br>
+            
+        <p> No of Runs{{ form.runs(size=40) }}</p>
+        {% for error in form.runs.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}<br>
+        <p><input type="submit" value="Execute"></p>
+    </form>
+{% endblock %}

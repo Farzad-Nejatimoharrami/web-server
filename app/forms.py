@@ -12,3 +12,7 @@ class SyringeForm(Form):
     syringe = StringField('syringe', validators=[DataRequired()])
     plunger = StringField('plunger', validators=[DataRequired()])
     
+
+class RcontrolForm(Form):
+    experiment = StringField('experiment', validators=[DataRequired()])
+    runs = StringField('runs', validators=[DataRequired()])

@@ -1,12 +1,14 @@
 from flask import render_template, flash, redirect
 from app import app
-from .forms import LoginForm, SyringeForm
+from .forms import LoginForm, SyringeForm, RcontrolForm
 import numpy as np
 
-def adder():
-    a=np.array([0])
-    np.save('a.npy', a)
-    
+import robotcontrol as rc
+
+
+def saveFunc(a):
+    a=np.array([a])
+    np.save('a.npy',a)
     
 
 @app.route('/')
@@ -48,7 +50,7 @@ def liveview():
     if form.validate_on_submit():
         flash('Syringe Down="%s", Plunger Pull=%s' %
               (form.syringe.data, form.plunger.data))
-        adder()
+    
         return redirect('/index')
     return render_template('liveview.html',
                            title='Live View',
@@ -59,3 +61,15 @@ def liveview():
 
 
 
+@app.route('/remotecontrol', methods=['GET', 'POST'])
+def remotecontrol():
+    form = RcontrolForm()
+    if form.validate_on_submit():
+        flash('Experiment="%s", Runs=%s' %
+              (form.experiment.data, form.runs.data))
+        #rc.webControl(form.experiment.data,form.runs.data)
+        return redirect('/index')
+    return render_template('remotecontrol.html',
+                           title='Remote Control',
+                           form=form,
+                           providers=app.config['OPENID_PROVIDERS'])

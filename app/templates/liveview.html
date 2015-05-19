@@ -17,7 +17,10 @@
     </script>
     
     <h1>EvoBot Video Stream</h1>
+    {% if form.plunger.data!=0 %}
     <img src="{{ url_for('video_feed') }}">
+    {% endif %}
+    
     <form action="" method="post" name="liveview">
         {{ form.hidden_tag() }}
         <p>

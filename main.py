@@ -2,6 +2,9 @@ from app import app
 from flask import Flask, render_template, Response
 #from camera import VideoCamera
 import cv2
+import threading
+import time
+
 
 
 cap=cv2.VideoCapture(1)
