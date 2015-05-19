@@ -1,6 +1,4 @@
 from flask import Flask
-#import sys
-#sys.path.append('../../evobliss-software/api')
 
 app = Flask(__name__)
 app.config.from_object('config')
