@@ -5,10 +5,12 @@ import numpy as np
 
 import robotcontrol as rc
 
-
+#rc.webControl('10','10')
 def saveFunc(a):
-    a=np.array([a])
-    np.save('a.npy',a)
+    
+    fo = open("foo.txt", "wb")
+    fo.write(a);
+    fo.close()
     
 
 @app.route('/')
@@ -67,7 +69,9 @@ def remotecontrol():
     if form.validate_on_submit():
         flash('Experiment="%s", Runs=%s' %
               (form.experiment.data, form.runs.data))
+        saveFunc(form.experiment.data)
         #rc.webControl(form.experiment.data,form.runs.data)
+        #rc.webControl('10','10')
         return redirect('/index')
     return render_template('remotecontrol.html',
                            title='Remote Control',
